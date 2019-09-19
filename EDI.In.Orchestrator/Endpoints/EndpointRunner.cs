@@ -1,4 +1,5 @@
-﻿using NServiceBus;
+﻿using EDI.In.Orchestrator.Messages.Commands;
+using NServiceBus;
 using System.Threading.Tasks;
 
 namespace EDI.In.Orchestrator.Endpoints
@@ -20,11 +21,14 @@ namespace EDI.In.Orchestrator.Endpoints
             config.SendFailedMessagesTo(_setting.ErrorQueue);
 
             config.UseSerialization<XmlSerializer>();
+            config.UsePersistence<InMemoryPersistence>();
 
             var transport = config.UseTransport<RabbitMQTransport>();
             transport.UseConventionalRoutingTopology();
             transport.ConnectionString(_setting.TransportConnection);
+            transport.Routing().RouteToEndpoint(typeof(ArchiveData), _setting.DestinationEndpointName);
 
+            config.Recoverability().Delayed(t => t.NumberOfRetries(0));
             _instance = await Endpoint.Start(config);
         }
 

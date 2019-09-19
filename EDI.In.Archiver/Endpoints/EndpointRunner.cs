@@ -1,5 +1,7 @@
 ﻿using NServiceBus;
 using System.Threading.Tasks;
+using Autofac;
+using System.Reflection;
 
 namespace EDI.In.Archiver.Endpoints
 {
@@ -21,10 +23,15 @@ namespace EDI.In.Archiver.Endpoints
 
             config.UseSerialization<XmlSerializer>();
 
+            var containerBuilder = new ContainerBuilder();
+            containerBuilder.RegisterType<Repositories.DbHelper>().As<Repositories.IDbHelper>();
+            config.UseContainer<AutofacBuilder>(t => t.ExistingLifetimeScope(containerBuilder.Build()));
+
             var transport = config.UseTransport<RabbitMQTransport>();
             transport.UseConventionalRoutingTopology();
             transport.ConnectionString(_setting.TransportConnection);
 
+            config.Recoverability().Delayed(t => t.NumberOfRetries(0));
             _instance = await Endpoint.Start(config);
         }
 

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EDI.In.Orchestrator.Resources {
+namespace EDI.In.Poller.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace EDI.In.Orchestrator.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ErrorMessage {
+    internal class LoggerMessage {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ErrorMessage() {
+        internal LoggerMessage() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace EDI.In.Orchestrator.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EDI.In.Orchestrator.Resources.ErrorMessage", typeof(ErrorMessage).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EDI.In.Poller.Resources.LoggerMessage", typeof(LoggerMessage).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,11 @@ namespace EDI.In.Orchestrator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Saga for {0} timeout after {1} minutes..
+        ///   Looks up a localized string similar to {0} purchase orders polled for {1}..
         /// </summary>
-        internal static string SagaTimeoutMessage {
+        internal static string PurchaseOrdersPolledMessage {
             get {
-                return ResourceManager.GetString("SagaTimeoutMessage", resourceCulture);
+                return ResourceManager.GetString("PurchaseOrdersPolledMessage", resourceCulture);
             }
         }
     }

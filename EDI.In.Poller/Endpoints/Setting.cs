@@ -12,13 +12,8 @@ namespace EDI.In.Poller.Endpoints
 
         public string TransportConnection { get; set; }
 
-        public string ServiceInstance { get; set; }
+        public string PurchaseOrderConnection { get; set; }
 
-        public TimeSpan CircuitBreakerTimeoutTimeSpan { get; set; }
-
-        public TimeSpan SubscriptionCacheTimeSpan { get; set;}
-
-        public string IntermediaryConnection { get; set; }
-        public TimeSpan CustomCheckTimeSpan { get; set; }
+        public string DestinationEndpointName { get; set; }
     }
 }

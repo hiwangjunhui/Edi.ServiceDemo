@@ -19,6 +19,9 @@ namespace EDI.In.Scheduler.Endpoints
         public TimeSpan SubscriptionCacheTimeSpan { get; set;}
 
         public string IntermediaryConnection { get; set; }
+
         public TimeSpan CustomCheckTimeSpan { get; set; }
+
+        public string DestinationEndpointName { get; set; }
     }
 }

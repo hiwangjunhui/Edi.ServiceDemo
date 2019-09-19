@@ -16,7 +16,7 @@ namespace EDI.In.Orchestrator.Helpers
             return setting;
         }
 
-        private static IConfigurationRoot Root {
+        public static IConfigurationRoot Root {
             get
             {
                 if (null == _root)

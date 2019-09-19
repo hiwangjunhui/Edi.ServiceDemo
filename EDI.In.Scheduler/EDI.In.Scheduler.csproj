@@ -17,6 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EDI.In.Scheduler.Messages\EDI.In.Scheduler.Messages.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Resources\ConfigurationResource.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

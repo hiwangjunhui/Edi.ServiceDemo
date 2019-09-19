@@ -4,15 +4,22 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
+using NServiceBus;
 
 namespace EDI.In.Scheduler.Helpers
 {
     static class EndpointHost
     {
-        public static async Task RunAsConsoleAsync(Endpoints.EndpointRunner endpointRunner)
+        public static async Task RunAsConsoleAsync(Endpoints.EndpointRunner endpointRunner, Func<IEndpointInstance, Task> commandSchedule)
         {
             await endpointRunner.StartAsync();
-            await new HostBuilder().RunConsoleAsync();
+
+            if (null == commandSchedule)
+            {
+                commandSchedule = instance => new HostBuilder().RunConsoleAsync();
+            }
+
+            await commandSchedule(endpointRunner.Instance);
             await endpointRunner.StopAsync();
         }
 

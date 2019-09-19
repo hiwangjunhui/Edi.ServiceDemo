@@ -1,4 +1,5 @@
-﻿using NServiceBus;
+﻿using EDI.In.Scheduler.Messages.Commands;
+using NServiceBus;
 using System.Threading.Tasks;
 
 namespace EDI.In.Scheduler.Endpoints
@@ -6,12 +7,13 @@ namespace EDI.In.Scheduler.Endpoints
     sealed class EndpointRunner
     {
         private readonly Setting _setting;
-        private IEndpointInstance _instance;
 
         public EndpointRunner(Setting setting)
         {
             _setting = setting;
         }
+
+        public IEndpointInstance Instance { get; private set; }
 
         public async Task StartAsync()
         {
@@ -24,13 +26,15 @@ namespace EDI.In.Scheduler.Endpoints
             var transport = config.UseTransport<RabbitMQTransport>();
             transport.UseConventionalRoutingTopology();
             transport.ConnectionString(_setting.TransportConnection);
+            transport.Routing().RouteToEndpoint(typeof(PollForPurchaseOrders), _setting.DestinationEndpointName);
 
-            _instance = await Endpoint.Start(config);
+            config.Recoverability().Delayed(t => t.NumberOfRetries(0));
+            Instance = await Endpoint.Start(config);
         }
 
         public async Task StopAsync()
         {
-            await _instance?.Stop();
+            await Instance?.Stop();
         }
     }
 }

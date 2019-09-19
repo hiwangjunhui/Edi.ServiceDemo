@@ -59,5 +59,14 @@ namespace EDI.In.Poller.Resources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id of PollerForPurchaseOrders is null..
+        /// </summary>
+        internal static string IdOfPollForPurchaseOrdersNullMessage {
+            get {
+                return ResourceManager.GetString("IdOfPollForPurchaseOrdersNullMessage", resourceCulture);
+            }
+        }
     }
 }

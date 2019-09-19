@@ -16,6 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EDI.In.Archiver.Messages\EDI.In.Archiver.Messages.csproj" />
+    <ProjectReference Include="..\EDI.In.Orchestrator.Messages\EDI.In.Orchestrator.Messages.csproj" />
+    <ProjectReference Include="..\EDI.In.Poller.Messages\EDI.In.Poller.Messages.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Endpoints\Service.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -46,6 +52,10 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>
