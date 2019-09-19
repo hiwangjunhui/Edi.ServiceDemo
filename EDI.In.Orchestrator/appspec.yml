@@ -1,0 +1,15 @@
+version: 0.0
+os: windows
+files:
+  - source: \
+    destination: D:\Deployments\EDI.In.Orchestrator
+hooks:
+  BeforeInstall:
+    - location: StopService.bat
+      timeout: 180
+    - location: BackupFiles.bat
+      timeout: 180
+  AfterInstall:
+    - location: StartService.bat
+      timeout: 180
+
